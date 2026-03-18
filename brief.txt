@@ -1,0 +1,24 @@
+USING GIT
+
+#### new repo: ####
+	- git init  => new repo based on the local folder youre in, sets up "main"/"master" branch
+	- git clone git@... <DIRECTORYNAME>  => clone repo (using ssh) from github/gitlab remote "origin" to local directory <DIRECTORYNAME>, sets up "main"/"master" branch
+		-> if working with submodules, also call:
+		   git submodule init
+		   git submodule update
+
+#### get info: ####
+	- git status  => prints info on remote branch, locally tracked and untracked changes 
+	- git branch  => lists locally available branches and highlights which branch youre on
+	- man git-config  => list all possible config options (man -> manual pages in general) 
+
+#### new branch: ####
+	- git branch <BRANCHNAME>  => branches from curent working branch, creating new branch <BRANCHNAME> 
+
+#### get documents from other branch: ####
+	- git checkout <BRANCHNAME> -- <PATHNAME>  => copies documents in <PATHNAME> from branch <BRANCHNAME> to current working branch
+	- git cherry-pick <COMMIT_HASH>  => copies the specific commit into the current branch, adding a new separate commit to the br
+
+
+
+
