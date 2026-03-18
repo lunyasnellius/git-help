@@ -13,11 +13,27 @@ USING GIT
 	- man git-config  => list all possible config options (man -> manual pages in general) 
 
 #### new branch: ####
-	- git branch <BRANCHNAME>  => branches from curent working branch, creating new branch <BRANCHNAME> 
+	- git branch <BRANCHNAME>  => branches from curent working branch, creating new branch <BRANCHNAME>
+	OR - git switch -c <BRANCHNAME>
+	OR - git checkout -b <BRANCHNAME>
+
+#### switch branch: ####
+	- git switch <BRANCHNAME>
+	OR - git checkout <BRANCHNAME>
+
+#### delete branch: ####
+	- git branch -d <BRANCHNAME>  => for deleting branch with all commits tracked somewhere else
+	- git branch -D <BRANCHNAME>  => for forcing deleting a branch 
 
 #### get documents from other branch: ####
 	- git checkout <BRANCHNAME> -- <PATHNAME>  => copies documents in <PATHNAME> from branch <BRANCHNAME> to current working branch
 	- git cherry-pick <COMMIT_HASH>  => copies the specific commit into the current branch, adding a new separate commit to the br
+
+#### make changes / save changes: ####
+	- just edit files as you would..
+	- git add <PATHNAME>  => stage (= add to commit list) changes made following <PATHNAME> (can be directory or file name)
+	- git mv/rm  => works as mv/rm command line inputs, just editing the current working branch
+
 
 
 
