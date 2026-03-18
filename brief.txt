@@ -3,6 +3,8 @@ USING GIT
 
 #### new repo: ####
 	- git init  => new repo based on the local folder youre in, sets up "main"/"master" branch
+		-> if you want to add a remote, also call:
+		   git remote add <NAME> <URL>
 	- git clone git@... <DIRECTORYNAME>  => clone repo (using ssh) from github/gitlab remote "origin" to local directory <DIRECTORYNAME>, sets up "main"/"master" branch
 		-> if working with submodules, also call:
 		   git submodule init
@@ -28,7 +30,7 @@ USING GIT
 	- git branch -D <BRANCHNAME>  => for forcing deleting a branch 
 
 #### get documents from other branch: ####
-	- git checkout <BRANCHNAME> -- <PATHNAME>  => copies documents in <PATHNAME> from branch <BRANCHNAME> to current working branch
+	- git checkout <BRANCHNAME> (or <COMMIT>) -- <PATHNAME>  => copies documents in <PATHNAME> from branch <BRANCHNAME> (or <COMMIT>) to current working branch
 	- git cherry-pick <COMMIT>  => copies the specific commit into the current branch, adding a new separate commit to the current working branch
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -48,6 +50,12 @@ USING GIT
 	- git status  => check if everything you wand to commit is staged
 	- git commit -m '  <COMMITMESSAGE>  '  => commit staged changes with message <COMMITMESSAGE>
 
+#### push and pull changes between remote and local: ####
+	- git push (origin <BRANCHNAME>)  => push commited changes in <BRANCHNAME> to the remote upstream 'origin' (if you havent set the upstream, use origin <BRANCHNAME> to clarify destination)
+		-> set upstream for branch <BRANCHNAME>:
+		   git push -u origin <BRANCHNAME>  (to set up tracking, if this branch has been only local so far)
+	- git pull (--rebase)  => fetch changes from the remote repository and merge changes into current working branch (or rebase current working branch on the remote changes)
+
 #### find out differences btw files/branches: ####
 	- git show <COMMIT> (--stat)  => show diff between <COMMIT> and its parent (or show a summary)
 	- git diff <COMMITA> <COMMITB>  => between two commits
@@ -66,8 +74,9 @@ USING GIT
 	- git reflog <BRANCHNAME>  and  git reset --hard <COMMIT>  => undo failed rebase by finding commit ID to go back to in the reflog and running reset with correct ID
 
 #### combine branches: ####
-	- git switch <BRANCH_A>  and  git merge <BRANCH_B>  => merge contents of <BRANCH_B> into <BRANCH_A> (no branch gets deleted -> safest version, might result in intransparent commit history)
-	- git switch <BRANCH_A>  and  git rebase <BRANCH_B>  => change commits to <BRANCH_A> in such a way that they get applied after the commits on <BRANCH_B> 
+	- git switch <BRANCH_A>  and  git merge <BRANCH_B>  => merge contents of <BRANCH_B> into <BRANCH_A> (no branch gets deleted or modified -> safest version, might result in intransparent commit history)
+	- git switch <BRANCH_A>  and  git rebase <BRANCH_B>  => change commits to <BRANCH_A> in such a way that they get applied after the commits on <BRANCH_B> (<BRANCH_A>'s commit history gets modified -> less safe, results in more transparend commit history)
+	- git switch <BRANCH_A>  and  git merge --squash <BRANCH_B>  and  git commit  => squash together all of the commits to <BRANCH_B> into one large commit and add this one to <BRANCH_A> (<BRANCH_A> gets a new potentially very large commit -> more complicated to perform for more commits and divergent code, thus less safe, results in more transparent commit history)
 
 
 
