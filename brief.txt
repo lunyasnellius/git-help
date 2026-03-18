@@ -1,4 +1,5 @@
 USING GIT
+(refer to https://git-scm.com/cheat-sheet for official overview)
 
 #### new repo: ####
 	- git init  => new repo based on the local folder youre in, sets up "main"/"master" branch
@@ -10,7 +11,8 @@ USING GIT
 #### get info: ####
 	- git status  => prints info on remote branch, locally tracked and untracked changes 
 	- git branch  => lists locally available branches and highlights which branch youre on
-	- man git-config  => list all possible config options (man -> manual pages in general) 
+	- man git-config  => list all possible config options (man -> manual pages in general)
+	- git log (--graph/--oneline) <BRANCHNAME> (or <FILENAME>)  => show log of changes to branch <BRANCHNAME> (as a graph/as shortened version) (or to <FILENAME>)
 
 #### new branch: ####
 	- git branch <BRANCHNAME>  => branches from curent working branch, creating new branch <BRANCHNAME>
@@ -27,14 +29,46 @@ USING GIT
 
 #### get documents from other branch: ####
 	- git checkout <BRANCHNAME> -- <PATHNAME>  => copies documents in <PATHNAME> from branch <BRANCHNAME> to current working branch
-	- git cherry-pick <COMMIT_HASH>  => copies the specific commit into the current branch, adding a new separate commit to the br
+	- git cherry-pick <COMMIT>  => copies the specific commit into the current branch, adding a new separate commit to the current working branch
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% INFO:						  %%%%
+%%%% <COMMIT> can be any one of:			  %%%%
+%%%% a branch (main)	a remote branch (origin/main)	  %%%%
+%%%% a commit ID	current commit (HEAD)		  %%%%
+%%%% a tag		3 commits ago (HEAD^^^ or HEAD~3) %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 #### make changes / save changes: ####
 	- just edit files as you would..
 	- git add <PATHNAME>  => stage (= add to commit list) changes made following <PATHNAME> (can be directory or file name)
 	- git mv/rm  => works as mv/rm command line inputs, just editing the current working branch and keeping others intact!
 	- git rm --cached <FILENAME>  => removes file from gits memory without deleting actual file
-	- git reset (<FILENAME>)  => unstages (= remove from commit list) everything (or just <FILENAME>)
+	- git reset (<FILENAME>)  => unstage (= remove from commit list) everything (or just <FILENAME>)
+	- git status  => check if everything you wand to commit is staged
+	- git commit -m '  <COMMITMESSAGE>  '  => commit staged changes with message <COMMITMESSAGE>
+
+#### find out differences btw files/branches: ####
+	- git show <COMMIT> (--stat)  => show diff between <COMMIT> and its parent (or show a summary)
+	- git diff <COMMITA> <COMMITB>  => between two commits
+	- git diff <COMMIT> <FILENAME>  => between <FILENAME> now and same file in <COMMIT>
+
+#### discard changes: ####
+	- git restore/checkout <FILENAME>  => delete unstaged changes to <FILENAME>
+	- git checkout HEAD <FILENAME>  => delete all staged and unstaged changes to <FILENAME>
+	- git reset --hard  => delete all staged and unstaged changes
+	- git clean  => delete all untracked files
+	- git stash  => stash (= 'put aside for now') all staged and unstaged changes
+
+#### edit history: ####
+	- git reset HEAD^  => remove the most recent commit without deleting or changing any files (for 'ah shit, didnt mean to commit that' - keeps working director the same)
+	- git commit --amend  => edit last commits message or add files to the commit
+	- git reflog <BRANCHNAME>  and  git reset --hard <COMMIT>  => undo failed rebase by finding commit ID to go back to in the reflog and running reset with correct ID
+
+#### combine branches: ####
+	- git switch <BRANCH_A>  and  git merge <BRANCH_B>  => merge contents of <BRANCH_B> into <BRANCH_A> (no branch gets deleted -> safest version, might result in intransparent commit history)
+	- git switch <BRANCH_A>  and  git rebase <BRANCH_B>  => change commits to <BRANCH_A> in such a way that they get applied after the commits on <BRANCH_B> 
+
 
 
 
