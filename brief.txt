@@ -32,7 +32,9 @@ USING GIT
 #### make changes / save changes: ####
 	- just edit files as you would..
 	- git add <PATHNAME>  => stage (= add to commit list) changes made following <PATHNAME> (can be directory or file name)
-	- git mv/rm  => works as mv/rm command line inputs, just editing the current working branch
+	- git mv/rm  => works as mv/rm command line inputs, just editing the current working branch and keeping others intact!
+	- git rm --cached <FILENAME>  => removes file from gits memory without deleting actual file
+	- git reset (<FILENAME>)  => unstages (= remove from commit list) everything (or just <FILENAME>)
 
 
 
