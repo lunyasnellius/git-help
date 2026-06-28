@@ -83,7 +83,15 @@ USING GIT
 	- git switch main => to make sure youre on main branch
 	- git fetch upstream => get info from upstream
 	- git merge upstream/main => get changes into your local repo (alt: use rebase instead)
+	- (fix conflicts and commit)
 	- git push (-f) origin main => (force) changes to your origin remote repo
+
+#### dealing with conflicts: ####
+	- git diff --name-only --diff-filter=U => show a list of files that have conflicts in them
+	- (edit files: remove the unwanted code and <<<</>>>>/==== marker lines)
+	- (commit changes and push) 
+
+
 
 
 
